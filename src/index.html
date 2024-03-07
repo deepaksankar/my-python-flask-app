@@ -3,10 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello World 1</title>
+    <title>URL Shortner</title>
   </head>
 
   <body>
-    <h1>Hello World 2</h1>
+    <h1>URL Shortner!!</h1>
+    <form action="your-url" method="post">
+      <label for="url"> Website URL</label>
+      <input type="url" name="url" value="" required />
+      <br /><br />
+      <label for="code">Short name</label>
+      <input type="text" name="code" value="" required />
+      <br /><br />
+      <button type="submit">Shorten</button>
+    </form>
   </body>
 </html>
