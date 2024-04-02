@@ -1,9 +1,9 @@
+from flask import Flask, send_file, render_template, request, redirect, url_for, flash
 import os
-
-from flask import Flask, send_file, render_template, request, redirect, url_for
 import json
 
 app = Flask(__name__)
+app.secret_key = 'thisisarandomsecretkeyfordevelopment'
 
 @app.route("/")
 def index():
@@ -17,6 +17,14 @@ def about():
 def your_url():
     if request.method == 'POST':
         urls = {}
+        if os.path.exists('urls.json'):
+            with open('urls.json', 'r') as file:
+                urls = json.load(file)
+        
+        if request.form['code'] in urls.keys():
+            flash('Short name already exists. Use a new short name!')
+            #return redirect(url_for('index'))
+            return render_template('index.html')
         urls[request.form['code']] = {'url': request.form['url']}
         with open('urls.json', 'w') as file:
             json.dump(urls, file)
